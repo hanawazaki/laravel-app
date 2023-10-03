@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Golds;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -24,10 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        app()->setLocale('id');
+
         $data = Golds::latest()->paginate(5);
 
+        $data->transform(function ($item) {
+            $item->formatted_date = Carbon::parse($item->tanggal)->isoFormat('dddd, D MMMM YYYY');
+            return $item;
+        });
+
+
         return view('pages.dashboard.index', [
-            'data' => $data
+            'data' => $data,
         ]);
     }
 
@@ -44,11 +53,47 @@ class HomeController extends Controller
         // exit();
         Golds::create($data);
 
-        return redirect()->back()->with('success', 'Data berhasil ditambahkan');
+        return redirect(route('dashboard'));
     }
 
-    public function search()
+    public function edit($id)
     {
-        return view('pages.dashboard.index');
+        $data = Golds::findOrfail($id);
+
+        return view('pages.dashboard.edit', [
+            'data' => $data
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // dd($request->all());
+        // exit();
+        $data = Golds::findOrfail($id);
+        $data->update($request->all());
+
+        return redirect(route('dashboard'));
+    }
+
+    public function delete($id)
+    {
+        $data = Golds::findOrfail($id);
+        $data->delete();
+
+        return redirect(route('dashboard'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+        // dd($request->search);
+        // exit();
+        if ($search) {
+            $data = Golds::where('carat', 'like', '%' . $search . '%')->paginate(5);
+        } else {
+            $data = Golds::paginate(5);
+        }
+
+        return view('pages.dashboard.index', ['data' => $data]);
     }
 }

@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/store', [HomeController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [HomeController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [HomeController::class, 'update'])->name('update');
-    Route::post('/delete/{id}', [HomeController::class, 'delete'])->name('delete');
+    Route::delete('/delete/{id}', [HomeController::class, 'delete'])->name('delete');
     Route::post('/logout',  [LoginController::class, 'logout'])->name('logout');
     Route::post('/search',  [HomeController::class, 'search'])->name('search');
 });

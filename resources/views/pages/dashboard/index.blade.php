@@ -13,12 +13,13 @@
         </div>
         <div class="d-flex flex-row justify-content-between align-items-center mt-2">
             <h6 class="">Data per halaman</h6>
-            <form action="{{route('search')}}" class="d-flex flex-row row g-3 align-items-center">
+            <form method="POST" action="{{route('search')}}" class="d-flex flex-row row g-3 align-items-center">
+                @csrf
                 <div class="col-auto">
-                    <label for="inputPassword6" class="col-form-label">Pencarian</label>
+                    <label for="search" class="col-form-label">Pencarian</label>
                 </div>
                 <div class="col-auto">
-                    <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="search" name="search" class="form-control">
                 </div>
             </form>
         </div>
@@ -39,16 +40,20 @@
                 @forelse ($data as $item)
 
                 <tr class="text-center">
-                    <th scope="row">1</th>
-                    <td>{{$item->updated_at}}</td>
+                    <th scope="row">{{ ($data->currentPage() - 1) * $data->perPage() + $loop->index + 1 }}</th>
+                    <td>{{ $item->formatted_date}}</td>
                     <td>{{$item->carat}}</td>
                     <td>{{$item->gold_price}}</td>
                     <td>{{$item->capital_price}}</td>
                     <td>{{$item->selling_price - $item->capital_price}}</td>
                     <td>{{$item->selling_price}}</td>
                     <td class="d-flex justify-content-between">
-                        <button class="btn btn-outline-info">Edit</button>
-                        <button class="btn btn-outline-danger">Delete</button>
+                        <a href="{{route('edit',$item->id)}}" class="btn btn-outline-info">Edit</a>
+                        <form action="{{ route('delete', $item->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="btn btn-outline-danger" type="submit">Delete</button>
+                        </form>
                     </td>
                 </tr>
 
@@ -63,20 +68,7 @@
                 @endforelse
             </tbody>
         </table>
-        <div>
-            <h6>Menampilkan 1 s/d 4 Dari</h6>
-        </div>
-        <div class="d-flex justify-content-end">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-            </nav>
-        </div>
+        {{ $data->links('vendor.pagination.bootstrap-5')  }}
     </div>
 </div>
 @endsection
