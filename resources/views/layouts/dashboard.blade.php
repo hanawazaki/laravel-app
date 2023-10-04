@@ -23,19 +23,93 @@
     <div class="row m-0">
       <div class="col-12 col-lg-3 col-navbar d-none d-xl-block border">
         <aside class="sidebar d-flex flex-column">
-          <a href="#" class="sidebar-logo">
+          <a href="#" class="sidebar-logo mb-4">
             <div class="d-flex justify-content-center align-items-center">
               <img src="{{asset('/img/logo.png')}}" alt="logo">
             </div>
           </a>
 
-          <a href="./index.html" class="sidebar-item active">
-            <span>Dashboard</span>
-          </a>
-
-          <a href="#" class="sidebar-item">
-            <span>Master Data</span>
-          </a>
+          <ul class="sidebar">
+            <li class="sidebar-item">
+              <a href="/" class="sidebar-link parent active">
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/" class="sidebar-link parent">
+                <span>Master Data</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/" class="sidebar-link parent">
+                <span>Berlian</span>
+              </a>
+              <ul class="sidebar-child">
+                <li class="sidebar-item">
+                  <a href="/" class="sidebar-link parent">
+                    Pembelian
+                  </a>
+                  <ul class="sidebar-child">
+                    <li class="sidebar-item">
+                      <a href="/" class="sidebar-link">Penerimaan QC</a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a href="/" class="sidebar-link">Penerimaan Barang </a>
+                    </li>
+                    <li class="sidebar-item">
+                      <a href="/" class="sidebar-link">Retur Pembelian</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/" class="sidebar-link parent">
+                    Penerimaan
+                  </a>
+                  <ul class="sidebar-child">
+                    <li class="sidebar-item">Penerimaan Barang Buy Back</li>
+                    <li class="sidebar-item">Penerimaan Barang Luar</li>
+                    <li class="sidebar-item">Penerimaan Barang DP</li>
+                  </ul>
+                </li>
+                <li class="sidebar-item">
+                  <a href="/" class="sidebar-link parent">
+                    Distribusi Toko
+                  </a>
+                  <ul class="sidebar-child">
+                    <li class="sidebar-item">List Distribusi Toko</li>
+                    <li class="sidebar-item">Produk</li>
+                  </ul>
+                </li>
+                <li class="sidebar-item">Penerimaan Berlian</li>
+                <li class="sidebar-item">Distribusi Toko - Berlian</li>
+                <li class="sidebar-item">
+                  <a href="/" class="sidebar-link parent">
+                    Stok
+                  </a>
+                  <ul class="sidebar-child">
+                    <li class="sidebar-item">Current Stock</li>
+                    <li class="sidebar-item">Kelola Stok</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="sidebar-item">
+              <a href="/" class="sidebar-link parent">
+                <span>Penjualan</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="/" class="sidebar-link parent">
+                <span>Laporan</span>
+              </a>
+              <ul class="sidebar-child">
+                <li class="sidebar-item">Laporan Utang</li>
+                <li class="sidebar-item">Laporan Piutang</li>
+                <li class="sidebar-item">Laporan Selisih Gram Emas</li>
+                <li class="sidebar-item">Laporan Selisih Kurs Berlian</li>
+              </ul>
+            </li>
+          </ul>
         </aside>
       </div>
 

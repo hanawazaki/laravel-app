@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DataRequest;
 use App\Models\Golds;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -45,8 +46,9 @@ class HomeController extends Controller
         return view('pages.dashboard.create');
     }
 
-    public function store(Request $request)
+    public function store(DataRequest $request)
     {
+
         $data = $request->all();
         Golds::create($data);
 
@@ -62,7 +64,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(DataRequest $request, $id)
     {
         // dd($request->all());
         // exit();
