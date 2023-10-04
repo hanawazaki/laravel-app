@@ -4,14 +4,14 @@
 <div class="container">
     <div class="col-md-8 w-100 px-5">
         <div class="d-flex justify-content-between mb-3">
-            <a href="{{route('create')}}" class="btn btn-primary">Tambah Penentuan Harga</a>
+            <a href="{{route('create')}}" class="btn btn-primary create-btn">Tambah Penentuan Harga</a>
             <div class="button-group">
                 <button class="btn btn-outline-secondary">Excel</button>
                 <button class="btn btn-outline-secondary">Pdf</button>
                 <button class="btn btn-outline-secondary">Print</button>
             </div>
         </div>
-        <div class="d-flex flex-row justify-content-between align-items-center mt-2">
+        <div class="d-flex flex-row justify-content-between align-items-center mt-4">
             <h6 class="">Data per halaman</h6>
             <form method="POST" action="{{route('search')}}" class="d-flex flex-row row g-3 align-items-center">
                 @csrf
@@ -19,11 +19,11 @@
                     <label for="search" class="col-form-label">Pencarian</label>
                 </div>
                 <div class="col-auto">
-                    <input type="text" id="search" name="search" class="form-control">
+                    <input type="text" id="search" name="search" class="form-control search-input">
                 </div>
             </form>
         </div>
-        <table class="table mt-2 table-bordered">
+        <table class="table mt-3 table-bordered">
             <thead>
                 <tr class="text-center">
                     <th scope="col">#</th>

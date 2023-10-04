@@ -48,9 +48,6 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-
-        // dd($data);
-        // exit();
         Golds::create($data);
 
         return redirect(route('dashboard'));
